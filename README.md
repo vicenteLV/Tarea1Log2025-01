@@ -10,7 +10,7 @@ Este proyecto implementa y compara los algoritmos de ordenamiento externo Merges
 El sistema genera 75 archivos de prueba (15 tamaños × 5 secuencias), encuentra la aridad óptima usando búsqueda binaria, ejecuta ambos algoritmos y registra métricas de tiempo y accesos a disco en formato CSV.
 
 Software requerido:
-- Compilador: GCC 7.0+ o compatible con C99
+- Compilador: GCC 
 - Sistema operativo: Linux, macOS, o Windows con WSL
 
 Uso del docker:
