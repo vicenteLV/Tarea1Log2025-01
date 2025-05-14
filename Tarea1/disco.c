@@ -5,12 +5,12 @@
 long long accesos = 0; //contador de accesos
 
 //vuelve el contador a 0
-void contadorACero(void){
+void contadorACero(){
     accesos = 0;
 }
 
 //entrega accesos registrados
-long long obtenerAccesos(void){
+long long obtenerAccesos(){
     return accesos;
 }
 
@@ -102,7 +102,7 @@ bloqIdx: indice del bloque
 return: 0 si exito, -1 si error
  */
 int cargarEnMemoria(ArchivoBin *archivo, size_t bloqIdx){
-     return leer_bloque(archivo, bloqIdx);
+     return leerBloque(archivo, bloqIdx);
 }
 
 /*
@@ -112,7 +112,7 @@ filename: nombre del archivo
 modo: modo de apertura ("rb", "wb", ...)
 return 0 si exito, -1 si error
 */
-int abrir_archivo(ArchivoBin *archivo, const char *filename, const char *modo) {
+int abrirArchivo(ArchivoBin *archivo, const char *filename, const char *modo) {
     assert(archivo != NULL && filename != NULL && modo != NULL);
     
     //copiar nombre del archivo
@@ -151,7 +151,7 @@ int abrir_archivo(ArchivoBin *archivo, const char *filename, const char *modo) {
 cierra un archivo y libera todos los recursos
 archivo: estructura del archivo a cerrar
 */
-void cerrar_archivo(ArchivoBin *archivo) {
+void cerrarArchivo(ArchivoBin *archivo) {
     if (!archivo) return;
     
     //escribir buffer si está sucio antes de cerrar
@@ -179,7 +179,7 @@ posicion: posición del elemento (indice)
 elemento: puntero donde almacenar el elemento leido
 return 0 si exito, -1 si error
  */
-int leer_elemento(ArchivoBin *archivo, size_t pos, int64_t *elemento) {
+int leerElemento(ArchivoBin *archivo, size_t pos, int64_t *elemento) {
     assert(archivo != NULL && elemento != NULL);
     
     //calcular el bloque en que esta el elemento
@@ -187,7 +187,7 @@ int leer_elemento(ArchivoBin *archivo, size_t pos, int64_t *elemento) {
     size_t offset_en_bloque = pos % ELEMENTS_PER_BLOCK;
     
     //cargar el bloque correspondiente si es necesario
-    if (leer_bloque(archivo, bloqIdx) != 0) {
+    if (leerBloque(archivo, bloqIdx) != 0) {
         return -1;
     }
     
@@ -203,7 +203,7 @@ pos: posición donde escribir el elemento
 elemento: elemento a escribir
 return 0 si exito, -1 si error
  */
-int escribir_elemento(ArchivoBin *archivo, size_t pos, int64_t elemento) {
+int escribirElemento(ArchivoBin *archivo, size_t pos, int64_t elemento) {
     assert(archivo != NULL);
     
     //calcular en que bloque esta el elemento
@@ -211,7 +211,7 @@ int escribir_elemento(ArchivoBin *archivo, size_t pos, int64_t elemento) {
     size_t offset_en_bloque = pos % ELEMENTS_PER_BLOCK;
     
     //cargar el bloque si es necesario
-    if (leer_bloque(archivo, bloque_num) != 0) {
+    if (leerBloque(archivo, bloque_num) != 0) {
         return -1;
     }
     
@@ -228,7 +228,7 @@ obtiene el tamaño de un archivo en número de elementos
 filename: nombre del archivo
 return: numero de elementos en el archivo
  */
-size_t obtener_tamaño_archivo(const char *filename) {
+size_t obtenerTamañoArchivo(const char *filename) {
     FILE *file = fopen(filename, "rb");
     if (!file) {
         return 0;

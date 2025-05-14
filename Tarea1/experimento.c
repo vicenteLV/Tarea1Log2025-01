@@ -30,11 +30,6 @@ int generarSecuenciaAleatoria(const char *filename, size_t numElementos) {
             cerrarArchivo(&archivo);
             return -1;
         }
-        
-        //mostrar progreso cada millon de elementos
-        if ((i + 1) % 1000000 == 0) {
-            printf("  Progreso: %zu/%zu elementos\n", i + 1, numElementos);
-        }
     }
     
     cerrarArchivo(&archivo);

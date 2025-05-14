@@ -22,6 +22,8 @@ typedef struct{
 } ArchivoBin;
 
 //funciones principales
+void contadorACero();
+long long obtenerAccesos();
 int leerBloque(ArchivoBin *archivo, size_t bloqIdx);
 int escribirBloque(ArchivoBin *archivo);
 int cargarEnMemoria(ArchivoBin *archivo, size_t bloqIdx);
