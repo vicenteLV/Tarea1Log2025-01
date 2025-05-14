@@ -32,7 +32,7 @@ void cerrarArchivo(ArchivoBin *archivo);
 int leerElemento(ArchivoBin *archivo, size_t pos, int64_t *elemento);
 int escribirElemento(ArchivoBin *archivo, size_t pos, int64_t elemento);
 
-size_t obtener_tamaño_archivo(const char *filename);
+size_t obtenerTamañoArchivo(const char *filename);
 
 
 #endif
